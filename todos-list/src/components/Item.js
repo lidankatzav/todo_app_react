@@ -13,7 +13,7 @@ export function Item({task_title, id, onRemoveClick, onMarkClick}) {
   return (
     <li>
       <div className="view">
-        <input className="toggle" type="checkbox" onClick={handleMarkClick} value = {id}/>
+        <input className="toggle" type="checkbox" onChange={handleMarkClick} value = {id}/>
         <label>{task_title}</label>
         <button className="destroy" onClick={handleRemoveClick} value = {id}/>
       </div>

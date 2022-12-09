@@ -2,53 +2,58 @@ import "./App.css";
 import { Header } from "./components/Header";
 import { Main } from "./components/Main";
 import { Footer } from "./components/Footer";
+import { useEffect, useState } from "react";
+
 
 function App() {
   const app_title = "Todos App";
   const entry_msg = "Whats need to be done?";
-  let counter = 0;
-  let todos = [
-    { task_title: "Learn React", completed: false, id: Date.now()+14353},
-    { task_title: "Listen to Nir", completed: false, id: Date.now()+54232},
-    { task_title: "Learn JS", completed: false, id: Date.now()+2453},
-  ];
+  const [todos, setTodos] = useState([]);
+  const [itemsLeftCounter, setItemsLeftCounter] = useState(0);
+
+  useEffect(() => {
+    const todosLeft = todos.filter( todo => !todo.completed );
+    setItemsLeftCounter(todosLeft.length)
+  },[todos] );
 
   const addToDo = (title) => {
-    todos.push({  task_title: title, completed: false, id: Date.now()});
-    console.log(todos);
+    const newTodos = todos.concat({  task_title: title, completed: false, id: Date.now()});
+    setTodos(newTodos);
   };
 
   const removeToDo = (idToRemove) => {
-    const todoIdxToRemove = todos.findIndex((item) => 
-      item.id == idToRemove
-    );
-    if(todoIdxToRemove != -1) todos.splice(todoIdxToRemove, 1);
-    console.log(todos);
+    const newTodos = todos.filter(item => item.id != idToRemove)
+    setTodos(newTodos);
   } 
 
   const markAsCompleted = (idToMark) => {
-    const todoIdxToMark = todos.findIndex((item) => 
-    item.id == idToMark
-  );
-    todos[todoIdxToMark].completed = !todos[todoIdxToMark].completed;
-    console.log(todos);
+    const newTodos = todos.map(item => {
+      if(item.id == idToMark) {
+        item.completed = !item.completed;
+      }
+      return item;
+    });
+    setTodos(newTodos);
+    console.log(newTodos);
   }
 
   const clearAllCompletedItems = () => {
-    todos = todos.filter(item => !item.completed);
-    console.log(todos);
+    const newTodos = todos.filter(item => !item.completed);
+    setTodos(newTodos);
+    console.log(newTodos);
   }
 
   const toggleAllItems = (checkedValue) => {
-    todos = todos.map((item) => ({...item, completed: checkedValue}) );
-    console.log(todos);
+    const newTodos = todos.map((item) => ({...item, completed: checkedValue}) );
+    setTodos(newTodos);
+    console.log(newTodos);
   };
 
   return (
     <section className="todoapp">
       <Header title={app_title} text={entry_msg} onAddItem={addToDo} />
       <Main items={todos} onToggleAllClick = {toggleAllItems} onRemoveClick={removeToDo} onMarkClick={markAsCompleted}/>
-      <Footer onClearClick = {clearAllCompletedItems} itemsLeft = {counter}/>
+      <Footer onClearClick = {clearAllCompletedItems} itemsLeft = {itemsLeftCounter}/>
     </section>
   );
 }
