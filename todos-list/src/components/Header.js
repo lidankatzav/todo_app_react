@@ -1,12 +1,11 @@
-export function Header(props) {
-  function handleTaskInput(event) {
+export function Header({title, text, onAddItem}) {
+  
+  const handleTaskInput = (event) => {
     if (event.key === "Enter") {
-      props.onAddItem(event.target.value);
+      onAddItem(event.target.value);
     }
   }
-
-  const {title, text} = props;
-
+  
   return (
     <header className="header">
       <h1>{title}</h1>
