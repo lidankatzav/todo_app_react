@@ -1,5 +1,5 @@
 
-export function Item({task_title, id, onRemoveClick, onMarkClick, isCompleted}){
+export function Item({task_title, id, onRemoveClick, onMarkClick, isCompleted, classNameForLabel}){
 
   function handleRemoveClick(event) {
     onRemoveClick(event.target.value);
@@ -11,7 +11,7 @@ export function Item({task_title, id, onRemoveClick, onMarkClick, isCompleted}){
 
 
   return (
-    <li>
+    <li className = {classNameForLabel}>
       <div className="view">
         <input className="toggle" type="checkbox" onClick={handleMarkClick} value = {id} checked = {isCompleted}/>
         <label>{task_title}</label>

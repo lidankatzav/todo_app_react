@@ -17,7 +17,7 @@ function App() {
   },[todos] );
 
   const addToDo = (title) => {
-    const newTodos = todos.concat({  task_title: title, completed: false , id: Date.now()});
+    const newTodos = todos.concat({  task_title: title, completed: false , id: Date.now(), classNameForLabel: "view"});
     setTodos(newTodos);
   };
 
@@ -30,6 +30,7 @@ function App() {
     const newTodos = todos.map(item => {
       if(item.id == idToMark) {
         item.completed = !item.completed;
+        item.classNameForLabel = item.completed? "completed": "view";
       }
       return item;
     });
