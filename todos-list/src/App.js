@@ -13,11 +13,11 @@ function App() {
 
   useEffect(() => {
     const todosLeft = todos.filter( todo => !todo.completed );
-    setItemsLeftCounter(todosLeft.length)
+    setItemsLeftCounter(todosLeft.length);
   },[todos] );
 
   const addToDo = (title) => {
-    const newTodos = todos.concat({  task_title: title, completed: false, id: Date.now()});
+    const newTodos = todos.concat({  task_title: title, completed: false , id: Date.now()});
     setTodos(newTodos);
   };
 
@@ -34,20 +34,16 @@ function App() {
       return item;
     });
     setTodos(newTodos);
-    console.log(newTodos);
   }
 
   const clearAllCompletedItems = () => {
     const newTodos = todos.filter(item => !item.completed);
-    debugger;
     setTodos(newTodos);
-    console.log(newTodos);
   }
 
   const toggleAllItems = (checkedValue) => {
     const newTodos = todos.map((item) => ({...item, completed: checkedValue}) );
     setTodos(newTodos);
-    console.log(newTodos);
   };
 
   return (
