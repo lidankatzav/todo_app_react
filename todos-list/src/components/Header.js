@@ -1,6 +1,6 @@
 export function Header({title, text, onAddItem}) {
   
-  const handleTaskInput = (event) => {
+  function handleTaskInput(event) {
     if (event.key === "Enter") {
       onAddItem(event.target.value);
     }

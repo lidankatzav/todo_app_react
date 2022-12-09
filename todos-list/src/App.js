@@ -39,6 +39,7 @@ function App() {
 
   const clearAllCompletedItems = () => {
     const newTodos = todos.filter(item => !item.completed);
+    debugger;
     setTodos(newTodos);
     console.log(newTodos);
   }

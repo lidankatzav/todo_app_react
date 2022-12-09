@@ -2,7 +2,7 @@ import { List } from "./Todos_list";
 
 export function Main({items, onRemoveClick, onMarkClick, onToggleAllClick}) {
 
-  let handleToggleAll = (event) => {
+  function handleToggleAll(event) {
     onToggleAllClick(event.target.checked)
   }
   
