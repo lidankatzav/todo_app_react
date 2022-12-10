@@ -1,5 +1,5 @@
 
-export function Item({task_title, id, onRemoveClick, onMarkClick, isCompleted, classNameForLabel}){
+export function Item({task_title, id, onRemoveClick, onMarkClick, isCompleted, classNameForTodo, onDoubleClick, onEnterClick}){
 
   function handleRemoveClick(event) {
     onRemoveClick(event.target.value);
@@ -9,12 +9,17 @@ export function Item({task_title, id, onRemoveClick, onMarkClick, isCompleted, c
     onMarkClick(event.target.value);
   }
 
+  function handleKeyUp(id, event) {
+    if (event.key === "Enter" && classNameForTodo === "editing") {
+      onEnterClick(id, event.target.value);
+    }
+  }
 
   return (
-    <li className = {classNameForLabel}>
+    <li className = {classNameForTodo} onKeyUp = {(event) => handleKeyUp(id, event)}>
       <div className="view">
-        <input className="toggle" type="checkbox" onClick={handleMarkClick} value = {id} checked = {isCompleted}/>
-        <label>{task_title}</label>
+        <input className="toggle" type="checkbox" onChange={handleMarkClick} value = {id} checked = {isCompleted}/>
+        <label onClick = {() => onDoubleClick(id)}>{task_title}</label>
         <button className="destroy" onClick={handleRemoveClick} value = {id}/>
       </div>
       <input className="edit" />

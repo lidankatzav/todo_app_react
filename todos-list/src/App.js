@@ -43,14 +43,35 @@ function App() {
   }
 
   const toggleAllItems = (checkedValue) => {
-    const newTodos = todos.map((item) => ({...item, completed: checkedValue}) );
+    const newTodos = todos.map((item) => ({...item, completed: checkedValue, classNameForLabel: checkedValue? "completed":"view"}) );
     setTodos(newTodos);
   };
+
+  const editTodo = (dbClickTodoID) => {
+    const newTodos = todos.map(item => {
+      if(item.id == dbClickTodoID) {
+        item.classNameForLabel = "editing";
+      }
+      return item;
+    });
+    setTodos(newTodos);
+  }
+
+  const updateTodo = (idToUpdate, textToUpdate) => {
+    const newTodos = todos.map(item => {
+      if(item.id == idToUpdate) {
+        item.task_title = textToUpdate;
+        item.classNameForLabel = "view";
+      }
+      return item;
+    });
+    setTodos(newTodos);
+  }
 
   return (
     <section className="todoapp">
       <Header title={app_title} text={entry_msg} onAddItem={addToDo} />
-      <Main items={todos} onToggleAllClick = {toggleAllItems} onRemoveClick={removeToDo} onMarkClick={markAsCompleted}/>
+      <Main items={todos} onToggleAllClick = {toggleAllItems} onRemoveClick={removeToDo} onMarkClick={markAsCompleted} onDoubleClick = {editTodo} onEnterClick = {updateTodo}/>
       <Footer onClearClick = {clearAllCompletedItems} itemsLeft = {itemsLeftCounter}/>
     </section>
   );
