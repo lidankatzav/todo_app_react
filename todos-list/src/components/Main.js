@@ -1,4 +1,4 @@
-
+import React from "react";
 import { List } from "./Todos_list";
 
 export function Main({items, onRemoveClick, onMarkClick, onToggleAllClick, onDoubleClick, onEnterClick}) {

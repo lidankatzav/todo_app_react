@@ -1,3 +1,4 @@
+import React from "react";
 
 export function Item({task_title, id, onRemoveClick, onMarkClick, isCompleted, classNameForTodo, onDoubleClick, onEnterClick}){
 

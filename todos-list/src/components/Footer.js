@@ -1,3 +1,5 @@
+import React from "react";
+
 export function Footer({onClearClick, itemsLeft}) {
   return (
     <footer className="footer">
