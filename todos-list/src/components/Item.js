@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ListContext } from "./providers/list-context";
 
-export function Item({task_title, id, onRemoveClick, onMarkClick, isCompleted, classNameForTodo, onDoubleClick, onEnterClick}){
+export function Item({task_title, id, isCompleted, classNameForTodo}){
 
+  const {removeToDo, markAsCompleted, editTodo, updateTodo} = useContext(ListContext);
+  
   function handleRemoveClick(event) {
-    onRemoveClick(event.target.value);
+    removeToDo(event.target.value);
   }
 
   function handleMarkClick(event) {
-    onMarkClick(event.target.value);
+    markAsCompleted(event.target.value);
   }
 
   function handleKeyUp(id, event) {
     if (event.key === "Enter" && classNameForTodo === "editing") {
-      onEnterClick(id, event.target.value);
+      updateTodo(id, event.target.value);
     }
   }
 
@@ -20,7 +23,7 @@ export function Item({task_title, id, onRemoveClick, onMarkClick, isCompleted, c
     <li className = {classNameForTodo} onKeyUp = {(event) => handleKeyUp(id, event)}>
       <div className="view">
         <input className="toggle" type="checkbox" onChange={handleMarkClick} value = {id} checked = {isCompleted}/>
-        <label onClick = {() => onDoubleClick(id)}>{task_title}</label>
+        <label onClick = {() => editTodo(id)}>{task_title}</label>
         <button className="destroy" onClick={handleRemoveClick} value = {id}/>
       </div>
       <input className="edit" />

@@ -1,23 +1,51 @@
 import "./App.css";
-import React from "react";
-import { Header } from "./components/Header";
-import { Main } from "./components/Main";
-import { Footer } from "./components/Footer";
-import {useTodos} from "./hooks/useTodos";
+import React, { useRef, useState } from "react";
+import {TodosApp} from "./components/Todos-App";
+import { AuthContext } from "./components/providers/AuthContext";
 
 function App() {
-  const app_title = "Todos App";
-  const entry_msg = "Whats need to be done?";
-  const {todos, itemsLeftCounter, addToDo, removeToDo, markAsCompleted, clearAllCompletedItems, toggleAllItems, 
-    editTodo, updateTodo} = useTodos();
+
+  const [appsNames, setAppNames] = useState([]);
+  const userInputNameApp = useRef(null);
+  const userName = useRef(null);
+  const userPassword = useRef(null);
+  const [userDeatils, setUserDeatils] = useState(null);
+
+  const addToAppsNames = (event) => {
+    if((event.type === "keyup" && event.key === "Enter") || event.type === "click") {
+      const newAppsNames = appsNames.concat(userInputNameApp.current.value);
+      setAppNames(newAppsNames);
+    }
+  }
+
+  const updateUserDeatils = () => {
+    if(userName.current.value && userPassword.current.value) {
+      setUserDeatils({name: (userName.current.value), password: (userPassword.current.value)});
+    }
+  }
 
   return (
-    <section className="todoapp">
-      <Header title={app_title} text={entry_msg} onAddItem={addToDo} />
-      <Main items={todos} onToggleAllClick = {toggleAllItems} onRemoveClick={removeToDo} onMarkClick={markAsCompleted} onDoubleClick = {editTodo} onEnterClick = {updateTodo}/>
-      <Footer onClearClick = {clearAllCompletedItems} itemsLeft = {itemsLeftCounter}/>
-    </section>
-  );
+    userDeatils ? (
+    <AuthContext.Provider value = {userDeatils.name}>
+      <>
+        <input onKeyUp = {addToAppsNames} ref = {userInputNameApp} type="text" autoFocus></input><text>   </text>
+        <button onClick = {addToAppsNames}>ADD LIST</button>
+      </>
+      <>
+        {appsNames.map((appName) => (
+          <TodosApp appName={appName}/>
+        ))}
+      </>
+    </AuthContext.Provider>
+  ) : (
+      <form>
+      <text>User Name:</text>
+      <input ref= {userName}  type="text" autoFocus required></input><br/><br/>
+      <text>Password:</text>
+      <input ref={userPassword} type = "password" required></input><br/><br/>
+      <button onClick = {updateUserDeatils} >Sumbit</button>
+    </form>
+  ));
 }
 
 export default App;

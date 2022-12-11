@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Item } from "./Item";
+import { ListContext } from "./providers/list-context";
 
-export function List({items, onRemoveClick, onMarkClick, onDoubleClick, onEnterClick}) {
+export function List() {
+
+  const {todos} = useContext(ListContext);
 
    return (
     <ul className="todo-list">
-      {items.map((item) => (
-        <Item task_title={item.task_title} key = {item.id}  id={item.id} onRemoveClick={onRemoveClick} onMarkClick={onMarkClick} isCompleted = {item.completed} classNameForTodo = {item.classNameForLabel} onDoubleClick = {onDoubleClick} onEnterClick = {onEnterClick}/>
+      {todos.map((item) => (
+        <Item task_title={item.task_title} key = {item.id}  id={item.id}
+         isCompleted = {item.completed} classNameForTodo = {item.classNameForLabel}/>
       ))}
     </ul>
   );

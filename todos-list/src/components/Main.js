@@ -1,16 +1,19 @@
-import React from "react";
+import { ListContext } from "./providers/list-context";
+import React, { useContext } from "react";
 import { List } from "./Todos_list";
 
-export function Main({items, onRemoveClick, onMarkClick, onToggleAllClick, onDoubleClick, onEnterClick}) {
+export function Main() {
+
+  const {toggleAllItems} = useContext(ListContext);
 
   function handleToggleAll(event) {
-    onToggleAllClick(event.target.checked)
+    toggleAllItems(event.target.checked)
   }
   
   return (
     <section className="main">
       <input className="toggle-all" type="checkbox" onChange = {handleToggleAll}/>
-      <List items={items} onRemoveClick={onRemoveClick} onMarkClick={onMarkClick} onDoubleClick = {onDoubleClick} onEnterClick = {onEnterClick}/>
+      <List/>
     </section>
   );
 }

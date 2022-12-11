@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ListContext } from "./providers/list-context";
+import { AuthContext } from "./providers/AuthContext";
 
-export function Header({title, text, onAddItem}) {
-  
+export function Header({title}) {
+
+  const {addToDo} = useContext(ListContext);
+  const name = useContext(AuthContext);
+
   function handleTaskInput(event) {
     if (event.key === "Enter") {
-      onAddItem(event.target.value);
+      addToDo(event.target.value);
       event.target.value = "";
     }
   }
@@ -14,7 +19,7 @@ export function Header({title, text, onAddItem}) {
       <h1>{title}</h1>
       <input
         className="new-todo"
-        placeholder={text}
+        placeholder= {`${name}, whats need to be done?`}
         onKeyUp={handleTaskInput}
         autoFocus
       />
