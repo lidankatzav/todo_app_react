@@ -5,6 +5,7 @@ export function Header({title, text, onAddItem}) {
   function handleTaskInput(event) {
     if (event.key === "Enter") {
       onAddItem(event.target.value);
+      event.target.value = "";
     }
   }
   
