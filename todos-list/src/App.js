@@ -38,13 +38,13 @@ function App() {
       </>
     </AuthContext.Provider>
   ) : (
-      <form>
+      <>
       <text>User Name:</text>
       <input ref= {userName}  type="text" autoFocus required></input><br/><br/>
       <text>Password:</text>
       <input ref={userPassword} type = "password" required></input><br/><br/>
       <button onClick = {updateUserDeatils} >Sumbit</button>
-    </form>
+    </>
   ));
 }
 
