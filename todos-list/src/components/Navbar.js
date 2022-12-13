@@ -1,14 +1,18 @@
 import React, { useContext } from "react";
 import {Link} from "react-router-dom";
 import { AuthContext } from "../providers/AuthContext";
+import { useNavigate } from 'react-router-dom';
 
 export function Navbar() {
 
     const {userDeatils, setUserDeatils} = useContext(AuthContext);
+    let navigate = useNavigate();
 
     const handleSignOut = () => {
         setUserDeatils(null);
+        navigate('/home');
     }
+
     
     return (
         <>
@@ -20,12 +24,13 @@ export function Navbar() {
             <li class="nav-list-item">
                 <Link to = {'/home'} class="nav-link">Home</Link>
             </li>
-            <li class="nav-list-item">
+            {!userDeatils && <li class="nav-list-item">
                 <Link to={'/sign-in'} class="nav-link">Log In</Link>
-            </li>
-            <li class="nav-list-item">
+            </li>}
+            {userDeatils && <li class="nav-list-item">
                 <Link to={'/todo-lists'} class="nav-link">Your Todo Lists</Link>
             </li>
+            }
            {userDeatils && 
            <li class="nav-list-item" >
                 <button onClick = {handleSignOut}>Log Out</button>
