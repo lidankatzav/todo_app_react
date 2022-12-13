@@ -35,7 +35,7 @@ export function MultiTodos() {
       </>) : (
         <>
         <br/><br/><br/><br/>
-        <h1 class="text-center"> Please Sign In First!</h1>
+        <h1 class="text-center"> Please Log In First!</h1>
         </>
       )
     );

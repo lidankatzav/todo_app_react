@@ -7,7 +7,7 @@ export function SignIn() {
 
     const userName = useRef(null);
     const userPassword = useRef(null);
-    const {setUserDeatils} = useContext(AuthContext);
+    const {setUserDeatils, userDeatils} = useContext(AuthContext);
     let navigate = useNavigate();
   
     const updateUserDeatils = (event) => {
@@ -20,6 +20,7 @@ export function SignIn() {
     }
 
     return (
+      !userDeatils ? (
     <>
     <div class="wrapper fadeInDown mt-5">
     <div id="formContent">
@@ -32,6 +33,11 @@ export function SignIn() {
 
     </div>
   </div>
-  </>
+  </> ) : (
+    <>
+    <br/><br/><br/><br/>
+    <h1 class = "text-center">You're already logged in</h1>
+    </>
+  )
 );
 }

@@ -21,14 +21,14 @@ export function Navbar() {
                 <Link to = {'/home'} class="nav-link">Home</Link>
             </li>
             <li class="nav-list-item">
-                <Link to={'/sign-in'} class="nav-link">Sign In</Link>
+                <Link to={'/sign-in'} class="nav-link">Log In</Link>
             </li>
             <li class="nav-list-item">
                 <Link to={'/todo-lists'} class="nav-link">Your Todo Lists</Link>
             </li>
            {userDeatils && 
            <li class="nav-list-item" >
-                <button onClick = {handleSignOut}>Sign Out</button>
+                <button onClick = {handleSignOut}>Log Out</button>
             </li> }
         </ul>
 
