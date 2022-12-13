@@ -24,25 +24,6 @@ export function SignIn() {
     //     <button onClick = {updateUserDeatils} type = "button">Sumbit</button>
     // </form>
     <>
-
-<nav class="main-navigation">
-        <div class="navbar-header animated fadeInUp">
-            <a class="navbar-brand" href="#"><img src = "https://www.clipartmax.com/png/full/422-4223441_important-clipart-todo-list-task-icon-mac.png"/></a>
-        </div>
-        <ul class="nav-list">
-            <li class="nav-list-item">
-                <a href="#" class="nav-link">Home</a>
-            </li>
-            <li class="nav-list-item">
-                <a href="#" class="nav-link">Sign In</a>
-            </li>
-            <li class="nav-list-item">
-                <a href="#" class="nav-link">Your Todo Lists</a>
-            </li>
-        </ul>
-
-    </nav>
-
     <div class="wrapper fadeInDown mt-5">
     <div id="formContent">
   
