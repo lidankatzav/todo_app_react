@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ListContext } from "./providers/list-context";
+import { ListContext } from "../providers/list-context";
 
 export function Footer() {
 

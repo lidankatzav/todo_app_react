@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Item } from "./Item";
-import { ListContext } from "./providers/list-context";
+import { ListContext } from "../providers/list-context";
 
 export function List() {
 
