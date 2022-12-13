@@ -5,14 +5,15 @@ import {MultiTodos} from "./pages/Multi-Todos";
 import React from "react";
 import {Home} from "./pages/Home";
 
+
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <App/>,
         children: [
-            {
+              {
                 path: 'home',
-                element: <Home />
+                element: <Home/>
               },
               {
                 path: 'sign-in',
@@ -25,3 +26,4 @@ export const router = createBrowserRouter([
         ]
     }
 ]);
+

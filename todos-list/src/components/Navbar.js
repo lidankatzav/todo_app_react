@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import {Link} from "react-router-dom";
+import { AuthContext } from "../providers/AuthContext";
 
 export function Navbar() {
+
+    const {userDeatils, setUserDeatils} = useContext(AuthContext);
+
+    const handleSignOut = () => {
+        setUserDeatils(null);
+    }
+    
     return (
         <>
         <nav class="main-navigation">
@@ -18,6 +26,10 @@ export function Navbar() {
             <li class="nav-list-item">
                 <Link to={'/todo-lists'} class="nav-link">Your Todo Lists</Link>
             </li>
+           {userDeatils && 
+           <li class="nav-list-item" >
+                <button onClick = {handleSignOut}>Sign Out</button>
+            </li> }
         </ul>
 
     </nav>     

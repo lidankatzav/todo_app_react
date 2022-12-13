@@ -15,18 +15,19 @@ export function useTodos() {
   };
 
   const removeToDo = (idToRemove) => {
-    const newTodos = todos.filter(item => item.id !== idToRemove)
+    const newTodos = todos.filter(item => item.id != idToRemove)
     setTodos(newTodos);
   } 
 
   const markAsCompleted = (idToMark) => {
     const newTodos = todos.map(item => {
-      if(item.id === idToMark) {
+      if(item.id == idToMark) {
         item.completed = !item.completed;
         item.classNameForLabel = item.completed? "completed": "view";
       }
       return item;
     });
+    console.log(newTodos);
     setTodos(newTodos);
   }
 
@@ -42,7 +43,7 @@ export function useTodos() {
 
   const editTodo = (dbClickTodoID) => {
     const newTodos = todos.map(item => {
-      if(item.id === dbClickTodoID) {
+      if(item.id == dbClickTodoID) {
         item.classNameForLabel = "editing";
       }
       return item;
@@ -52,7 +53,7 @@ export function useTodos() {
 
   const updateTodo = (idToUpdate, textToUpdate) => {
     const newTodos = todos.map(item => {
-      if(item.id === idToUpdate) {
+      if(item.id == idToUpdate) {
         item.task_title = textToUpdate;
         item.classNameForLabel = "view";
       }

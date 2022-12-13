@@ -5,7 +5,7 @@ import { AuthContext } from "../providers/AuthContext";
 export function Header({title}) {
 
   const {addToDo} = useContext(ListContext);
-  // const userDeatils = useContext(AuthContext);
+  const {userDeatils} = useContext(AuthContext);
 
   function handleTaskInput(event) {
     if (event.key === "Enter") {
@@ -15,14 +15,16 @@ export function Header({title}) {
   }
   
   return (
+    <>
     <header className="header">
       <h1>{title}</h1>
       <input
         className="new-todo"
-        placeholder= {`${'Lidan'}, whats need to be done?`}
+        placeholder= {`${userDeatils.name}, whats need to be done?`}
         onKeyUp={handleTaskInput}
         autoFocus
       />
     </header>
+    </>
   );
 }

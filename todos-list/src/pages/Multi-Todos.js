@@ -1,5 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import {TodosApp} from "../components/Todos-App";
+import { AuthContext } from "../providers/AuthContext";
+import '../css/App.css'
 
 export function MultiTodos() {
 
@@ -10,23 +12,32 @@ export function MultiTodos() {
         if((event.type === "keyup" && event.key === "Enter") || event.type === "click") {
           const newAppsNames = appsNames.concat(userInputAppName.current.value);
           setAppNames(newAppsNames);
+          userInputAppName.current.value = "";
         }
-      }
+    }
+
+    const {userDeatils} = useContext(AuthContext);
 
     return (
+      userDeatils ? (
         <>
             <>
-            <input onKeyUp = {addToAppsNames} ref = {userInputAppName} type="text" autoFocus></input><text>   </text>
+            <br/><br/>
+            <input onKeyUp = {addToAppsNames} ref = {userInputAppName} type="text" placeholder="List Title" autoFocus></input><text>   </text>
             <button onClick = {addToAppsNames}>ADD LIST</button>
             </>
             <>
             {appsNames.map((appName) => (
             <TodosApp appName={appName}/>
             ))}
+            <br/><br/>
             </>
-      </>
+      </>) : (
+        <>
+        <br/><br/><br/><br/>
+        <h1 class="text-center"> Please Sign In First!</h1>
+        </>
+      )
     );
-
-
 
 }
