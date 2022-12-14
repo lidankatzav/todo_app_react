@@ -12,7 +12,6 @@ export function Navbar() {
         setUserDeatils(null);
         navigate('/home');
     }
-
     
     return (
         <>
@@ -33,7 +32,7 @@ export function Navbar() {
             }
            {userDeatils && 
            <li class="nav-list-item" >
-                <button onClick = {handleSignOut}>Log Out</button>
+                <button onClick = {handleSignOut} class="nav-link">Log Out</button>
             </li> }
         </ul>
 

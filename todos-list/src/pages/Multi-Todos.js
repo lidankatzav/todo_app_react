@@ -30,7 +30,7 @@ export function MultiTodos() {
             {appsNames.map((appName) => (
             <TodosApp appName={appName}/>
             ))}
-            <br/><br/>
+            <br/><br/><br/>
             </>
       </>) : (
         <>

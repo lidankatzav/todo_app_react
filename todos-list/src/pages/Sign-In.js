@@ -14,7 +14,7 @@ export function SignIn() {
       if((event.type === "keyup" && event.key === "Enter") || event.type === "click") {
         if(userName.current.value && userPassword.current.value) {
           setUserDeatils({name: (userName.current.value), password: (userPassword.current.value)});
-          navigate('/todo-lists');
+          navigate('/home');
         }
       }
     }
